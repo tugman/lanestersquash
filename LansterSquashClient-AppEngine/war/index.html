@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr" ng-app ng-controller="MainCtrl">
+<head>
+<meta charset="UTF-8">
+<title>Lanester Squash</title>
+<link href="vendors/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="vendors/bootstrap-datepicker/css/datepicker.css"
+	rel="stylesheet" />
+<style>
+.datepicker {
+	z-index: 1151 !important;
+}
+
+.modal-header {
+	min-height: 16.43px;
+	padding: 15px;
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #337ab7;
+	border-radius: 6px;
+	outline: 0;
+}
+
+.score {
+	font-size: 10em;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<!-- ============================================= -->
+	<!--  MENU                                         -->
+	<!-- ============================================= -->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Lanester Squash</a>
+		</div>
+		<div class="collapse navbar-collapse" id="example-navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> Joueurs <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" ng-click="onPlayerList()">Liste des
+								joueurs</a></li>
+						<li><a href="#" ng-click="onNewPlayer()">Nouveau joueur</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> Matchs <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" ng-click="onMatchList()">Liste des matchs</a></li>
+						<li><a href="#" ng-click="onNewMatch()">Nouveau match</a></li>
+						<li><a href="#" ng-click="onPlayMatch()">Jouer un match</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> Tournois <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" ng-click="onTournementList()">Liste des
+								tournois</a></li>
+						<li><a href="#" ng-click="onNewTournement()">Créer un
+								tournoi</a></li>
+					</ul></li>
+				<li class="active"><a href="#" ng-click="onHelp()">Aide</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- ============================================= -->
+	<!--  Zone principale                              -->
+	<!-- ============================================= -->
+	<div id="wrapper-content" class="container-fluid"
+		style="background-color: White; height: 100%;">
+
+		<!-- ============================================= -->
+		<!--  Liste des joueurs                            -->
+		<!-- ============================================= -->
+		<div id="list_players" class="list-group" ng-show="list_players_show"
+			ng-controller="listPlayers">
+			<a href="#" class="list-group-item active">
+				<h4 class="list-group-item-heading">Liste des joueurs</h4>
+			</a>
+			<table ng-table
+				class="table table-striped table-hover table-responsive list-group-item">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Prénom</th>
+						<th>Club</th>
+						<th>Telephone</th>
+						<th>Date naissance</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="player in players" ng-click="modifyPlayer(player)">
+					<td>{{player.name}}</td>
+					<td>{{player.firstName}}</td>
+					<td>{{player.club}}</td>
+					<td>{{player.telephon}}-{{player.mobile}}</td>
+					<td>{{player.birthDay}}</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- ============================================= -->
+		<!--  Edition d'un joueur                          -->
+		<!-- ============================================= -->
+		<div class="modal fade" id="playerModal" tabindex="-1" role="dialog"
+			aria-labelledby="modalPlayer" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Joueur</h4>
+					</div>
+					<div class="modal-body">
+						<form id="playerForm" method="post" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nom</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="name"
+										value="{{player.name}}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Prénom</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="firstName"
+										value="{{player.firstName}}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Date de naissance</label>
+								<div class="col-sm-5 input-append date">
+									<input type="text" class="form-control" name="firstName"
+										data-provide="datepicker" data-date-format="mm/dd/yyyy" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Club</label>
+								<div class="col-sm-5">
+									<input type="
+										text" class="form-control" name="club" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-6 col-sm-offset-3">
+									<button type="button" class="btn btn-success pull-right">Enregistrer</button>
+									<button type="button" class="btn btn-primary pull-right"
+										data-dismiss="modal">Annuler</button>
+									<button type="button" class="btn btn-danger pull-right"
+										data-toggle="modal" data-target="#confirmSuppress">Supprimer</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- ============================================= -->
+		<!--  Creation d un nouveau Match                  -->
+		<!-- ============================================= -->
+		<div class="modal fade" id="newMatchModal" tabindex="-1" role="dialog"
+			aria-labelledby="modalPlayer" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Nouveau match</h4>
+					</div>
+					<div class="modal-body">
+						<form id="playerForm" method="post" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Joueur 1</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="player1"
+										ng-repeat="player in players">
+									<!-- TODO -->
+									<option>{{player.name}}</option>
+									</input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Joueur 2</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="name"
+										value="{{player.name}}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Arbitre</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="name"
+										value="{{player.name}}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Marqueur</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" name="name"
+										value="{{player.name}}" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nombre de jeux
+									gagnants</label>
+								<div class="col-sm-5">
+									<input type="range" min="1" max="5" step="1" value="3"
+										onchange="updateSliderMatchSetting(this.value)" /> <label
+										id="numberOfWinningGame" class="col-sm-3 control-label">3</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-6 col-sm-offset-3">
+									<button type="button" class="btn btn-success pull-right">Suivant</button>
+									<button type="button" class="btn btn-primary pull-right"
+										data-dismiss="modal">Annuler</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- ============================================= -->
+		<!--  IHM d arbitrage                              -->
+		<!-- ============================================= -->
+		<div id="match" class="list-group" ng-show="match_show"
+			ng-controller="match">
+			<a href="#" class="list-group-item active">
+				<h4 class="list-group-item-heading">Match finale de la coupe du
+					monde</h4>
+			</a>
+			
+			<div id="match" class="list-group-item">
+				<div id="match" class="list-group col-md-4" ng-show="match_show"
+					ng-controller="match">
+					<a href="#" class="list-group-item active">
+						<h4 class="list-group-item-heading">François BERNIER</h4>
+					</a>
+					<div id="match" class="list-group-item">
+						<div class="score">0</div>
+					</div>
+				</div>
+				<div class="list-group col-md-2"></div>
+				<div id="match" class="list-group col-md-4" ng-show="match_show"
+					ng-controller="match">
+					<a href="#" class="list-group-item active">
+						<h4 class="list-group-item-heading">Lionel LE GUENNIC</h4>
+					</a>
+					<div id="match" class="list-group-item">
+						<div class="score">0</div>
+					</div>
+				</div>
+
+
+
+
+
+		</div>
+
+		<div class="list-group col-md-1">
+			<button type="button" class="btn btn-success pull-right">No
+				Let</button>
+			<button type="button" class="btn btn-warning pull-right">Let</button>
+			<button type="button" class="btn btn-danger pull-right">Stroke</button>
+		</div>
+
+
+
+		<!-- ============================================= -->
+		<!--  pop up de confirmation de suppression        -->
+		<!-- ============================================= -->
+		<div class="modal fade" id="confirmSuppress" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Suppression</h4>
+					</div>
+					<div class="modal-body">Voulez vous supprimer cet
+						enregistrement ?</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+						<button type="button" class="btn btn-primary">Supprimer</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- End of wrapper-content -->
+	</div>
+
+	<!-- Scritpts -->
+	<script>
+		// Chargement des API App Engine
+		function googleApiClientReady() {
+		  apiRoot = '//' + window.location.host + '/_ah/api';
+		  gapi.client.load('playerendpoint', 'v1', function() {
+		      console.log("playerendpoint api loaded");
+		  }, apiRoot);
+		}
+		// Mise à jour du slider
+		function updateSliderMatchSetting(value){
+			document.getElementById("numberOfWinningGame").innerHTML = value;
+		}
+	</script>
+	<script
+		src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+	<script src="vendors/jquery/js/jquery.js"></script>
+	<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendors/angularjs/1.0.8/angular.min.js"></script>
+	<script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/listPlayers.js"></script>
+	<script src="js/controllers/match.js"></script>
+
+</body>
+</html>
+

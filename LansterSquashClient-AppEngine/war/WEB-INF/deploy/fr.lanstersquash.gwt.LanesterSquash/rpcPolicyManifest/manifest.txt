@@ -1,0 +1,2 @@
+# Module fr.lanstersquash.gwt.LanesterSquash
+# RPC service class, partial path of RPC policy file

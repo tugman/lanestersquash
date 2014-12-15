@@ -1,0 +1,277 @@
+{
+ "kind": "discovery#rpcDescription",
+ "etag": "\"9mnLCPwbyZOHH18t8ExzO2gqgTk/8ZoaKsi0AtiV8fw82FKm1JJexcg\"",
+ "discoveryVersion": "v1",
+ "id": "pointendpoint:v1",
+ "name": "pointendpoint",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "lanstersquash.fr",
+ "ownerName": "lanstersquash.fr",
+ "packagePath": "model",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rpc",
+ "rootUrl": "https://lanestersquash.appspot.com/_ah/api/",
+ "rpcUrl": "https://lanestersquash.appspot.com/_ah/api/rpc",
+ "rpcPath": "/_ah/api/rpc",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "CollectionResponse_Point": {
+   "id": "CollectionResponse_Point",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Point"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "Key": {
+   "id": "Key",
+   "type": "object",
+   "properties": {
+    "appId": {
+     "type": "string"
+    },
+    "complete": {
+     "type": "boolean"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "kind": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "namespace": {
+     "type": "string"
+    },
+    "parent": {
+     "$ref": "Key"
+    }
+   }
+  },
+  "Player": {
+   "id": "Player",
+   "type": "object",
+   "properties": {
+    "adresse": {
+     "type": "string"
+    },
+    "birthDay": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "city": {
+     "type": "string"
+    },
+    "eMail": {
+     "type": "string"
+    },
+    "firstName": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "key": {
+     "$ref": "Key"
+    },
+    "licenceNumber": {
+     "type": "string"
+    },
+    "mobile": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "picture": {
+     "type": "string",
+     "format": "byte"
+    },
+    "telephon": {
+     "type": "string"
+    },
+    "zipCode": {
+     "type": "string"
+    }
+   }
+  },
+  "Point": {
+   "id": "Point",
+   "type": "object",
+   "properties": {
+    "key": {
+     "$ref": "Key"
+    },
+    "numberOfEchanges": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "serveur": {
+     "$ref": "Player"
+    },
+    "winner": {
+     "$ref": "Player"
+    }
+   }
+  }
+ },
+ "methods": {
+  "pointendpoint.getPoint": {
+   "id": "pointendpoint.getPoint",
+   "allowGet": true,
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "returns": {
+    "$ref": "Point"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "pointendpoint.insertPoint": {
+   "id": "pointendpoint.insertPoint",
+   "parameters": {
+    "resource": {
+     "$ref": "Point"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Point"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "pointendpoint.listPoint": {
+   "id": "pointendpoint.listPoint",
+   "allowGet": true,
+   "parameters": {
+    "cursor": {
+     "type": "string"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_Point"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "pointendpoint.removePoint": {
+   "id": "pointendpoint.removePoint",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "pointendpoint.updatePoint": {
+   "id": "pointendpoint.updatePoint",
+   "parameters": {
+    "resource": {
+     "$ref": "Point"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Point"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}

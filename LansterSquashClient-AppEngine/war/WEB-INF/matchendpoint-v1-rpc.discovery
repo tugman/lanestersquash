@@ -1,0 +1,416 @@
+{
+ "kind": "discovery#rpcDescription",
+ "etag": "\"9mnLCPwbyZOHH18t8ExzO2gqgTk/6-NkVkC7OtEJYlbEIespbG7Al9w\"",
+ "discoveryVersion": "v1",
+ "id": "matchendpoint:v1",
+ "name": "matchendpoint",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "lanstersquash.fr",
+ "ownerName": "lanstersquash.fr",
+ "packagePath": "model",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rpc",
+ "rootUrl": "https://lanestersquash.appspot.com/_ah/api/",
+ "rpcUrl": "https://lanestersquash.appspot.com/_ah/api/rpc",
+ "rpcPath": "/_ah/api/rpc",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "CollectionResponse_Match": {
+   "id": "CollectionResponse_Match",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Match"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "Date": {
+   "id": "Date",
+   "type": "object",
+   "properties": {
+    "date": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "day": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "fieldName": {
+     "type": "string"
+    },
+    "hours": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "minutes": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "month": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "owner": {
+     "$ref": "_any"
+    },
+    "seconds": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "time": {
+     "type": "string",
+     "format": "int64"
+    },
+    "timezoneOffset": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "value": {
+     "$ref": "_any"
+    },
+    "year": {
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "Game": {
+   "id": "Game",
+   "type": "object",
+   "properties": {
+    "key": {
+     "$ref": "Key"
+    },
+    "points": {
+     "type": "array",
+     "items": {
+      "$ref": "Point"
+     }
+    }
+   }
+  },
+  "Key": {
+   "id": "Key",
+   "type": "object",
+   "properties": {
+    "appId": {
+     "type": "string"
+    },
+    "complete": {
+     "type": "boolean"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "kind": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "namespace": {
+     "type": "string"
+    },
+    "parent": {
+     "$ref": "Key"
+    }
+   }
+  },
+  "Match": {
+   "id": "Match",
+   "type": "object",
+   "properties": {
+    "arbitre": {
+     "$ref": "Player"
+    },
+    "games": {
+     "type": "array",
+     "items": {
+      "$ref": "Game"
+     }
+    },
+    "key": {
+     "$ref": "Key"
+    },
+    "levelOfMatch": {
+     "type": "string"
+    },
+    "marqueur": {
+     "$ref": "Player"
+    },
+    "matchDate": {
+     "$ref": "Date"
+    },
+    "matchName": {
+     "type": "string"
+    },
+    "matchStatus": {
+     "type": "string"
+    },
+    "numberOfWinningSet": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "player1": {
+     "$ref": "Player"
+    },
+    "player2": {
+     "$ref": "Player"
+    },
+    "startPlayer": {
+     "$ref": "Player"
+    },
+    "startTime": {
+     "type": "string",
+     "format": "int64"
+    },
+    "stopTime": {
+     "type": "string",
+     "format": "int64"
+    },
+    "tournement": {
+     "$ref": "Tournement"
+    },
+    "winner": {
+     "$ref": "Player"
+    }
+   }
+  },
+  "Player": {
+   "id": "Player",
+   "type": "object",
+   "properties": {
+    "adresse": {
+     "type": "string"
+    },
+    "birthDay": {
+     "type": "string",
+     "format": "date-time"
+    },
+    "city": {
+     "type": "string"
+    },
+    "eMail": {
+     "type": "string"
+    },
+    "firstName": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "key": {
+     "$ref": "Key"
+    },
+    "licenceNumber": {
+     "type": "string"
+    },
+    "mobile": {
+     "type": "string"
+    },
+    "name": {
+     "type": "string"
+    },
+    "picture": {
+     "type": "string",
+     "format": "byte"
+    },
+    "telephon": {
+     "type": "string"
+    },
+    "zipCode": {
+     "type": "string"
+    }
+   }
+  },
+  "Point": {
+   "id": "Point",
+   "type": "object",
+   "properties": {
+    "key": {
+     "$ref": "Key"
+    },
+    "numberOfEchanges": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "serveur": {
+     "$ref": "Player"
+    },
+    "winner": {
+     "$ref": "Player"
+    }
+   }
+  },
+  "Tournement": {
+   "id": "Tournement",
+   "type": "object",
+   "properties": {
+    "key": {
+     "$ref": "Key"
+    }
+   }
+  },
+  "_any": {
+   "id": "_any",
+   "type": "any"
+  }
+ },
+ "methods": {
+  "matchendpoint.getMatch": {
+   "id": "matchendpoint.getMatch",
+   "allowGet": true,
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "returns": {
+    "$ref": "Match"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "matchendpoint.insertMatch": {
+   "id": "matchendpoint.insertMatch",
+   "parameters": {
+    "resource": {
+     "$ref": "Match"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Match"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "matchendpoint.listMatch": {
+   "id": "matchendpoint.listMatch",
+   "allowGet": true,
+   "parameters": {
+    "cursor": {
+     "type": "string"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_Match"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "matchendpoint.removeMatch": {
+   "id": "matchendpoint.removeMatch",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "matchendpoint.updateMatch": {
+   "id": "matchendpoint.updateMatch",
+   "parameters": {
+    "resource": {
+     "$ref": "Match"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Match"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}

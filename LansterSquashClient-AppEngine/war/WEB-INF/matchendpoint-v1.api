@@ -1,0 +1,406 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://lanestersquash.appspot.com/_ah/api",
+  "name" : "matchendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://lanestersquash.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "lanstersquash.fr",
+  "ownerName" : "lanstersquash.fr",
+  "packagePath" : "model",
+  "methods" : {
+    "matchendpoint.insertMatch" : {
+      "path" : "match",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "fr.lanstersquash.model.MatchEndpoint.insertMatch",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "matchendpoint.listMatch" : {
+      "path" : "match",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "fr.lanstersquash.model.MatchEndpoint.listMatch",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "matchendpoint.getMatch" : {
+      "path" : "match/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "fr.lanstersquash.model.MatchEndpoint.getMatch",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "matchendpoint.updateMatch" : {
+      "path" : "match",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "fr.lanstersquash.model.MatchEndpoint.updateMatch",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "matchendpoint.removeMatch" : {
+      "path" : "match/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "fr.lanstersquash.model.MatchEndpoint.removeMatch",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Match" : {
+        "id" : "Match",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "player1" : {
+            "$ref" : "Player"
+          },
+          "player2" : {
+            "$ref" : "Player"
+          },
+          "arbitre" : {
+            "$ref" : "Player"
+          },
+          "marqueur" : {
+            "$ref" : "Player"
+          },
+          "winner" : {
+            "$ref" : "Player"
+          },
+          "numberOfWinningSet" : {
+            "type" : "integer"
+          },
+          "games" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Game"
+            }
+          },
+          "startPlayer" : {
+            "$ref" : "Player"
+          },
+          "matchStatus" : {
+            "type" : "string"
+          },
+          "matchName" : {
+            "type" : "string"
+          },
+          "matchDate" : {
+            "$ref" : "Date"
+          },
+          "startTime" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "stopTime" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "levelOfMatch" : {
+            "type" : "string"
+          },
+          "tournement" : {
+            "$ref" : "Tournement"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "Player" : {
+        "id" : "Player",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "club" : {
+            "type" : "string"
+          },
+          "birthDay" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "adresse" : {
+            "type" : "string"
+          },
+          "zipCode" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "telephon" : {
+            "type" : "string"
+          },
+          "mobile" : {
+            "type" : "string"
+          },
+          "eMail" : {
+            "type" : "string"
+          },
+          "licenceNumber" : {
+            "type" : "string"
+          },
+          "picture" : {
+            "type" : "string",
+            "format" : "byte"
+          }
+        }
+      },
+      "Game" : {
+        "id" : "Game",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "points" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Point"
+            }
+          }
+        }
+      },
+      "Point" : {
+        "id" : "Point",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "serveur" : {
+            "$ref" : "Player"
+          },
+          "winner" : {
+            "$ref" : "Player"
+          },
+          "numberOfEchanges" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Date" : {
+        "id" : "Date",
+        "type" : "object",
+        "properties" : {
+          "fieldName" : {
+            "type" : "string"
+          },
+          "month" : {
+            "type" : "integer"
+          },
+          "hours" : {
+            "type" : "integer"
+          },
+          "minutes" : {
+            "type" : "integer"
+          },
+          "seconds" : {
+            "type" : "integer"
+          },
+          "year" : {
+            "type" : "integer"
+          },
+          "date" : {
+            "type" : "integer"
+          },
+          "value" : {
+            "$ref" : "_any"
+          },
+          "owner" : {
+            "$ref" : "_any"
+          },
+          "time" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "day" : {
+            "type" : "integer"
+          },
+          "timezoneOffset" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "_any" : {
+        "id" : "_any",
+        "type" : "any"
+      },
+      "Tournement" : {
+        "id" : "Tournement",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          }
+        }
+      },
+      "CollectionResponse_Match" : {
+        "id" : "CollectionResponse_Match",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Match"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "fr.lanstersquash.model.MatchEndpoint.insertMatch" : {
+        "request" : {
+          "$ref" : "Match"
+        },
+        "response" : {
+          "$ref" : "Match"
+        }
+      },
+      "fr.lanstersquash.model.MatchEndpoint.listMatch" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Match"
+        }
+      },
+      "fr.lanstersquash.model.MatchEndpoint.getMatch" : {
+        "response" : {
+          "$ref" : "Match"
+        }
+      },
+      "fr.lanstersquash.model.MatchEndpoint.updateMatch" : {
+        "request" : {
+          "$ref" : "Match"
+        },
+        "response" : {
+          "$ref" : "Match"
+        }
+      },
+      "fr.lanstersquash.model.MatchEndpoint.removeMatch" : {
+      }
+    }
+  }
+}
