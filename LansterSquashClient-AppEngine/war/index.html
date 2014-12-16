@@ -38,7 +38,10 @@
 					<ul class="dropdown-menu">
 						<li><a href="#" ng-click="onMatchList()">Liste des matchs</a></li>
 						<li><a href="#" ng-click="onNewMatch()">Nouveau match</a></li>
-						<li><a href="#" ng-click="onPlayMatch()">Jouer un match</a></li>
+						<li><a href="#" ng-click="onPlayMatchArbitration()">Arbitrer
+								un match</a></li>
+						<li><a href="#" ng-click="onPlayMatchFollow()">Suivre un
+								match</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"> Tournois <b class="caret"></b></a>
@@ -218,18 +221,16 @@
 		<!-- ============================================= -->
 		<!--  IHM d arbitrage                              -->
 		<!-- ============================================= -->
-		<div id="match" class="list-group" ng-show="match_show"
-			ng-controller="match">
+		<div id="match_arbitration" class="list-group"
+			ng-show="match_arbitration_show" ng-controller="match">
 			<a href="#" class="list-group-item active">
 				<h4 class="list-group-item-heading">Match finale de la coupe du
 					monde - Temps de jeu 0:45:36</h4>
 			</a>
-
 			<div id="match" class="list-group-item">
 				<div class="row">
 					<div class="list-group col-md-1"></div>
-					<div id="match" class="list-group col-md-4" ng-show="match_show"
-						ng-controller="match">
+					<div id="match" class="list-group col-md-4">
 						<a href="#" class="list-group-item active">
 							<h4 class="list-group-item-heading">
 								François BERNIER <span class="label label-success">3</span>
@@ -278,8 +279,7 @@
 							</tr>
 						</table>
 					</div>
-					<div id="match" class="list-group col-md-4" ng-show="match_show"
-						ng-controller="match">
+					<div id="match" class="list-group col-md-4">
 						<a href="#" class="list-group-item active">
 							<h4 class="list-group-item-heading">
 								Lionel LE GUENNIC <span class="label label-danger">2</span>
