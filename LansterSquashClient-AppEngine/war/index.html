@@ -52,7 +52,12 @@
 						<li><a href="#" ng-click="onNewTournement()">Créer un
 								tournoi</a></li>
 					</ul></li>
-				<li class="active"><a href="#" ng-click="onHelp()">Aide</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"> Aide <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="help.html">Aide</a></li>
+						<li><a href="#" ng-click="onAbout()">A propos de ...</a></li>
+					</ul></li>
 			</ul>
 		</div>
 	</nav>
@@ -195,6 +200,40 @@
 				</div>
 			</div>
 		</div>
+
+
+
+
+
+		<!-- ============================================= -->
+		<!--  A propos de                                  -->
+		<!-- ============================================= -->
+		<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog"
+			aria-labelledby="modalAbout" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title">A propos de ...</h4>
+					</div>
+					<div class="modal-body">
+						<table>
+							<td width="25%"><img src="images/squash.png"
+								class="img-responsive" alt="Responsive image"></td>
+							<td width="5%"></td>
+							<td>
+								<h1>Lanester Squash</h1> </br>
+								<h4>Arbitrage des matchs de squash</h4> </br> <a
+								href="https://fr-fr.facebook.com/LanesterSquash">Facebook</a>
+							</td>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 
 
 		<!-- ============================================= -->

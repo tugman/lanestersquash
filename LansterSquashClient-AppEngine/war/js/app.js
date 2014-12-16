@@ -38,8 +38,8 @@ var MainCtrl = function($scope, $http) {
 	$scope.onNewTournement = function() {
 		alert("New Tournement");
 	};
-	$scope.onHelp = function() {
-		alert("Help");
+	$scope.onAbout = function() {
+		$("#aboutModal").modal('show');
 	};
 
 	// Hide all DIVs
