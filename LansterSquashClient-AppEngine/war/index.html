@@ -115,7 +115,7 @@
 					</tr>
 				</thead>
 				<tr ng-repeat="match in matchs" ng-click="modifyMatch(match)">
-					<td>{{match.name}}</td>
+					<td>{{match.matchname}}</td>
 					<td>{{match.player1}}</td>
 					<td>{{match.player2}}</td>
 					<td>{{match.state}}</td>
@@ -368,6 +368,10 @@
 		  apiRoot = '//' + window.location.host + '/_ah/api';
 		  gapi.client.load('playerendpoint', 'v1', function() {
 		      console.log("playerendpoint api loaded");
+		  }, apiRoot);
+		  apiRoot = '//' + window.location.host + '/_ah/api';
+		  gapi.client.load('matchendpoint', 'v1', function() {
+		      console.log("matchendpoint api loaded");
 		  }, apiRoot);
 		}
 		// Mise à jour du slider

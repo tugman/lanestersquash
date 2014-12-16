@@ -15,6 +15,7 @@ var MainCtrl = function($scope, $http) {
 	};
 	$scope.onMatchList = function() {
 		hideAll();
+		$scope.$broadcast("updateListOfMatch", null);
 		$scope.list_matchs_show = true;
 	};
 	$scope.onNewMatch = function() {
