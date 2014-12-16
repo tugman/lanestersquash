@@ -14,7 +14,8 @@ var MainCtrl = function($scope, $http) {
 		$("#playerModal").modal('show');
 	};
 	$scope.onMatchList = function() {
-		alert("Match List");
+		hideAll();
+		$scope.list_matchs_show = true;
 	};
 	$scope.onNewMatch = function() {
 		$("#newMatchModal").modal('show');
@@ -40,6 +41,7 @@ var MainCtrl = function($scope, $http) {
 	function hideAll() {
 		$scope.list_players_show = false;
 		$scope.match_arbitration_show = false;
+		$scope.list_matchs_show = false;
 	}
 
 };
