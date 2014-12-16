@@ -1,4 +1,4 @@
-// List Player controler
+// List Match controler
 'use strict';
 
 var listMatchs = function($scope, $http) {

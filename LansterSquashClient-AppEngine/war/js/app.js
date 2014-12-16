@@ -25,6 +25,10 @@ var MainCtrl = function($scope, $http) {
 		hideAll();
 		$scope.match_arbitration_show = true;
 	};
+	$scope.onWarmUp = function() {
+		hideAll();
+		$scope.warmup_show = true;
+	};
 	$scope.onPlayMatchFollow = function() {
 		alert("Suivre un match");
 	};
@@ -43,6 +47,7 @@ var MainCtrl = function($scope, $http) {
 		$scope.list_players_show = false;
 		$scope.match_arbitration_show = false;
 		$scope.list_matchs_show = false;
+		$scope.warmup_show = false;
 	}
 
 };

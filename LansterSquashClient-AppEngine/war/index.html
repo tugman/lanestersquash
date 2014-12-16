@@ -38,6 +38,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="#" ng-click="onMatchList()">Liste des matchs</a></li>
 						<li><a href="#" ng-click="onNewMatch()">Nouveau match</a></li>
+						<li><a href="#" ng-click="onWarmUp()">Echauffement</a></li>
 						<li><a href="#" ng-click="onPlayMatchArbitration()">Arbitrer
 								un match</a></li>
 						<li><a href="#" ng-click="onPlayMatchFollow()">Suivre un
@@ -122,6 +123,19 @@
 					<td>{{match.date}}</td>
 				</tr>
 			</table>
+		</div>
+
+
+		<!-- ============================================= -->
+		<!--  Echauffement                                 -->
+		<!-- ============================================= -->
+		<div id="warmup" class="list-group" ng-show="warmup_show"
+			ng-controller="warmUp">
+			<a href="#" class="list-group-item active">
+				<h4 class="list-group-item-heading">Echauffement</h4>
+			</a> <a href="#" class="list-group-item">
+				<h1 class="list-group-item-heading">5:00</h1>
+			</a>
 		</div>
 
 
@@ -328,8 +342,6 @@
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 
 
@@ -388,6 +400,7 @@
 		<script src="js/app.js"></script>
 		<script src="js/controllers/listPlayers.js"></script>
 		<script src="js/controllers/listMatchs.js"></script>
+		<script src="js/controllers/warmUp.js"></script>
 		<script src="js/controllers/match.js"></script>
 </body>
 </html>
