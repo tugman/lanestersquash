@@ -5,7 +5,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>fr.lanstersquash.model.GameEndpoint,fr.lanstersquash.model.MatchEndpoint,fr.lanstersquash.model.MatchScoreEndpoint,fr.lanstersquash.model.PlayerEndpoint,fr.lanstersquash.model.PointEndpoint,fr.lanstersquash.model.TournementEndpoint</param-value>
+   <param-value>fr.lanstersquash.model.PlayerEndpoint</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>

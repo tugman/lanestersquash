@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" ng-app ng-controller="MainCtrl">
+<html lang="fr" ng-app="routeApp">
 <head>
 <meta charset="UTF-8">
 <title>Lanester Squash</title>
@@ -22,425 +22,38 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Lanester Squash</a>
+			<a class="navbar-brand" href="#/">Lanester Squash</a>
 		</div>
 		<div class="collapse navbar-collapse" id="example-navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> Joueurs <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" ng-click="onPlayerList()">Liste des
-								joueurs</a></li>
-						<li><a href="#" ng-click="onNewPlayer()">Nouveau joueur</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> Matchs <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" ng-click="onMatchList()">Liste des matchs</a></li>
-						<li><a href="#" ng-click="onNewMatch()">Nouveau match</a></li>
-						<li><a href="#" ng-click="onWarmUp()">Echauffement</a></li>
-						<li><a href="#" ng-click="onPlayMatchArbitration()">Arbitrer
-								un match</a></li>
-						<li><a href="#" ng-click="onPlayMatchFollow()">Suivre un
-								match</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> Tournois <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" ng-click="onTournementList()">Liste des
-								tournois</a></li>
-						<li><a href="#" ng-click="onNewTournement()">Créer un
-								tournoi</a></li>
-					</ul></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> Aide <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="help.html">Aide</a></li>
-						<li><a href="#" ng-click="onAbout()">A propos de ...</a></li>
-					</ul></li>
+				<li><a href="#/players">Joueurs</a></li>
+				<li><a href="#/trainings">Entrainements</a></li>
 			</ul>
 		</div>
 	</nav>
 
-	<!-- ============================================= -->
-	<!--  Zone principale                              -->
-	<!-- ============================================= -->
-	<div id="wrapper-content" class="container-fluid"
-		style="background-color: White; height: 100%;">
+	<div ng-view></div>
 
-		<!-- ============================================= -->
-		<!--  Liste des joueurs                            -->
-		<!-- ============================================= -->
-		<div id="list_players" class="list-group" ng-show="list_players_show"
-			ng-controller="listPlayers">
-			<a href="#" class="list-group-item active">
-				<h4 class="list-group-item-heading">Liste des joueurs</h4>
-			</a>
-			<table ng-table
-				class="table table-striped table-hover table-responsive list-group-item">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Prénom</th>
-						<th>Club</th>
-						<th>Telephone</th>
-						<th>Date naissance</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="player in players" ng-click="modifyPlayer(player)">
-					<td>{{player.name}}</td>
-					<td>{{player.firstName}}</td>
-					<td>{{player.club}}</td>
-					<td>{{player.telephon}}-{{player.mobile}}</td>
-					<td>{{player.birthDay}}</td>
-				</tr>
-			</table>
-		</div>
-
-
-
-
-
-		<!-- ============================================= -->
-		<!--  Liste des matchs                             -->
-		<!-- ============================================= -->
-		<div id="list_matchs" class="list-group" ng-show="list_matchs_show"
-			ng-controller="listMatchs">
-			<a href="#" class="list-group-item active">
-				<h4 class="list-group-item-heading">Liste des matchs</h4>
-			</a>
-			<table ng-table
-				class="table table-striped table-hover table-responsive list-group-item">
-				<thead>
-					<tr>
-						<th>Match</th>
-						<th>Joueur 1</th>
-						<th>Joueur 2</th>
-						<th>Etat du match</th>
-						<th>Date du match</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="match in matchs" ng-click="modifyMatch(match)">
-					<td>{{match.matchname}}</td>
-					<td>{{match.player1}}</td>
-					<td>{{match.player2}}</td>
-					<td>{{match.state}}</td>
-					<td>{{match.date}}</td>
-				</tr>
-			</table>
-		</div>
-
-
-		<!-- ============================================= -->
-		<!--  Echauffement                                 -->
-		<!-- ============================================= -->
-		<div id="warmup" class="list-group" ng-show="warmup_show"
-			ng-controller="warmUp">
-			<a href="#" class="list-group-item active">
-				<h4 class="list-group-item-heading">Echauffement</h4>
-			</a> <a href="#" class="list-group-item">
-				<h1 class="list-group-item-heading">5:00</h1>
-			</a>
-		</div>
-
-
-		<!-- ============================================= -->
-		<!--  Edition d'un joueur                          -->
-		<!-- ============================================= -->
-		<div class="modal fade" id="playerModal" tabindex="-1" role="dialog"
-			aria-labelledby="modalPlayer" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Joueur</h4>
-					</div>
-					<div class="modal-body">
-						<form id="playerForm" method="post" class="form-horizontal">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="name"
-										value="{{player.name}}" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Prénom</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="firstName"
-										value="{{player.firstName}}" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Date de naissance</label>
-								<div class="col-sm-5 input-append date">
-									<input type="text" class="form-control" name="firstName"
-										data-provide="datepicker" data-date-format="mm/dd/yyyy" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Club</label>
-								<div class="col-sm-5">
-									<input type="
-										text" class="form-control" name="club" />
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-6 col-sm-offset-3">
-									<button type="button" class="btn btn-success pull-right">Enregistrer</button>
-									<button type="button" class="btn btn-primary pull-right"
-										data-dismiss="modal">Annuler</button>
-									<button type="button" class="btn btn-danger pull-right"
-										data-toggle="modal" data-target="#confirmSuppress">Supprimer</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-		<!-- ============================================= -->
-		<!--  A propos de                                  -->
-		<!-- ============================================= -->
-		<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog"
-			aria-labelledby="modalAbout" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title">A propos de ...</h4>
-					</div>
-					<div class="modal-body">
-						<table>
-							<td width="25%"><img src="images/squash.png"
-								class="img-responsive" alt="Responsive image"></td>
-							<td width="5%"></td>
-							<td>
-								<h1>Lanester Squash</h1> </br>
-								<h4>Arbitrage des matchs de squash</h4> </br> <a
-								href="https://fr-fr.facebook.com/LanesterSquash">Facebook</a>
-							</td>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-
-		<!-- ============================================= -->
-		<!--  Creation d un nouveau Match                  -->
-		<!-- ============================================= -->
-		<div class="modal fade" id="newMatchModal" tabindex="-1" role="dialog"
-			aria-labelledby="modalPlayer" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Nouveau match</h4>
-					</div>
-					<div class="modal-body">
-						<form id="playerForm" method="post" class="form-horizontal">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Joueur 1</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="name"
-										value="{{player.name}}" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Joueur 2</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="name"
-										value="{{player.name}}" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Arbitre</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="name"
-										value="{{player.name}}" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Marqueur</label>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" name="name"
-										value="{{player.name}}" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Nombre de jeux
-									gagnants</label>
-								<div class="col-sm-5">
-									<input type="range" min="1" max="5" step="1" value="3"
-										onchange="updateSliderMatchSetting(this.value)" /> <label
-										id="numberOfWinningGame" class="col-sm-3 control-label">3</label>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-6 col-sm-offset-3">
-									<button type="button" class="btn btn-success pull-right">Suivant</button>
-									<button type="button" class="btn btn-primary pull-right"
-										data-dismiss="modal">Annuler</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-		<!-- ============================================= -->
-		<!--  IHM d arbitrage                              -->
-		<!-- ============================================= -->
-		<div id="match_arbitration" class="list-group"
-			ng-show="match_arbitration_show" ng-controller="match">
-			<a href="#" class="list-group-item active">
-				<h4 class="list-group-item-heading">Match finale de la coupe du
-					monde - Temps de jeu 0:45:36</h4>
-			</a>
-			<div id="match" class="list-group-item">
-				<div class="row">
-					<div class="list-group col-md-1"></div>
-					<div id="match" class="list-group col-md-4">
-						<a href="#" class="list-group-item active">
-							<h4 class="list-group-item-heading">
-								François BERNIER <span class="label label-success">3</span>
-							</h4>
-						</a>
-						<div id="match" class="list-group-item">
-							<div class="row">
-								<div class="score">0</div>
-							</div>
-							<div class="row">
-								<button type="button" class="btn btn-success pull-right">Droite</button>
-								<button type="button" class="btn btn-danger pull-left">Gauche</button>
-								<button type="button" class="btn btn-warning center-block">Appel</button>
-							</div>
-						</div>
-					</div>
-					<div class="list-group col-md-2">
-						<table ng-table
-							class="table table-striped table-responsive list-group-item"
-							style="text-align: center;">
-							<thead>
-								<tr>
-									<th style="width: 50%;">François</th>
-									<th style="width: 50%;">Lionel</th>
-								</tr>
-							</thead>
-							<tr>
-								<td class="win">11</td>
-								<td>8</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td class="win">11</td>
-							</tr>
-							<tr>
-								<td class="win">15</td>
-								<td>13</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td class="win">11</td>
-							</tr>
-							<tr>
-								<td class="win">11</td>
-								<td>4</td>
-							</tr>
-						</table>
-					</div>
-					<div id="match" class="list-group col-md-4">
-						<a href="#" class="list-group-item active">
-							<h4 class="list-group-item-heading">
-								Lionel LE GUENNIC <span class="label label-danger">2</span>
-							</h4>
-						</a>
-						<div id="match" class="list-group-item">
-							<div class="row">
-								<div class="score">0</div>
-							</div>
-							<div class="row">
-								<button type="button" class="btn btn-success pull-right">Droite</button>
-								<button type="button" class="btn btn-danger pull-left">Gauche</button>
-								<button type="button" class="btn btn-warning center-block">Appel</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-
-			<!-- ============================================= -->
-			<!--  pop up de confirmation de suppression        -->
-			<!-- ============================================= -->
-			<div class="modal fade" id="confirmSuppress" tabindex="-1"
-				role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">Suppression</h4>
-						</div>
-						<div class="modal-body">Voulez vous supprimer cet
-							enregistrement ?</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Annuler</button>
-							<button type="button" class="btn btn-primary">Supprimer</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<!-- End of wrapper-content -->
-		</div>
-
-		<!-- Scritpts -->
-		<script>
+	<!-- Scritpts -->
+	<script>
 		// Chargement des API App Engine
 		function googleApiClientReady() {
 		  apiRoot = '//' + window.location.host + '/_ah/api';
 		  gapi.client.load('playerendpoint', 'v1', function() {
 		      console.log("playerendpoint api loaded");
 		  }, apiRoot);
-		  apiRoot = '//' + window.location.host + '/_ah/api';
-		  gapi.client.load('matchendpoint', 'v1', function() {
-		      console.log("matchendpoint api loaded");
-		  }, apiRoot);
-		}
-		// Mise à jour du slider
-		function updateSliderMatchSetting(value){
-			document.getElementById("numberOfWinningGame").innerHTML = value;
 		}
 	</script>
-		<script
-			src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-		<script src="vendors/jquery/js/jquery.js"></script>
-		<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-		<script src="vendors/angularjs/1.0.8/angular.min.js"></script>
-		<script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/controllers/listPlayers.js"></script>
-		<script src="js/controllers/listMatchs.js"></script>
-		<script src="js/controllers/warmUp.js"></script>
-		<script src="js/controllers/match.js"></script>
+	<script
+		src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+	<script src="vendors/jquery/js/jquery.js"></script>
+	<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular-route.js"></script>
+	<script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/listPlayers.js"></script>
+	<script src="js/controllers/trainings.js"></script>
 </body>
 </html>
 

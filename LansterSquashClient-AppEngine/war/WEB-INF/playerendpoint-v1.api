@@ -64,6 +64,27 @@
         "body" : "empty"
       }
     },
+    "playerendpoint.getPlayer" : {
+      "path" : "player/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "fr.lanstersquash.model.PlayerEndpoint.getPlayer",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "playerendpoint.listPlayer" : {
       "path" : "player",
       "httpMethod" : "GET",
@@ -81,27 +102,6 @@
           "limit" : {
             "type" : "int32",
             "required" : false
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "playerendpoint.getPlayer" : {
-      "path" : "player/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "fr.lanstersquash.model.PlayerEndpoint.getPlayer",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
           }
         },
         "body" : "empty"
@@ -133,9 +133,6 @@
         "id" : "Player",
         "type" : "object",
         "properties" : {
-          "key" : {
-            "$ref" : "Key"
-          },
           "id" : {
             "type" : "string",
             "format" : "int64"
@@ -145,66 +142,6 @@
           },
           "firstName" : {
             "type" : "string"
-          },
-          "club" : {
-            "type" : "string"
-          },
-          "birthDay" : {
-            "type" : "string",
-            "format" : "date-time"
-          },
-          "adresse" : {
-            "type" : "string"
-          },
-          "zipCode" : {
-            "type" : "string"
-          },
-          "city" : {
-            "type" : "string"
-          },
-          "telephon" : {
-            "type" : "string"
-          },
-          "mobile" : {
-            "type" : "string"
-          },
-          "eMail" : {
-            "type" : "string"
-          },
-          "licenceNumber" : {
-            "type" : "string"
-          },
-          "picture" : {
-            "type" : "string",
-            "format" : "byte"
-          }
-        }
-      },
-      "Key" : {
-        "id" : "Key",
-        "type" : "object",
-        "properties" : {
-          "kind" : {
-            "type" : "string"
-          },
-          "appId" : {
-            "type" : "string"
-          },
-          "id" : {
-            "type" : "string",
-            "format" : "int64"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "namespace" : {
-            "type" : "string"
-          },
-          "parent" : {
-            "$ref" : "Key"
-          },
-          "complete" : {
-            "type" : "boolean"
           }
         }
       },
@@ -235,14 +172,14 @@
       },
       "fr.lanstersquash.model.PlayerEndpoint.removePlayer" : {
       },
-      "fr.lanstersquash.model.PlayerEndpoint.listPlayer" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Player"
-        }
-      },
       "fr.lanstersquash.model.PlayerEndpoint.getPlayer" : {
         "response" : {
           "$ref" : "Player"
+        }
+      },
+      "fr.lanstersquash.model.PlayerEndpoint.listPlayer" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Player"
         }
       },
       "fr.lanstersquash.model.PlayerEndpoint.updatePlayer" : {

@@ -1,14 +1,9 @@
 package fr.lanstersquash.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.google.appengine.api.datastore.Blob;
-import com.google.appengine.api.datastore.Key;
 
 @Entity
 public class Player {
@@ -18,27 +13,16 @@ public class Player {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Key key;
 	private Long id;
 	private String name;
 	private String firstName;
-	private String club;
-	private Date birthDay;
-	private String adresse;
-	private String zipCode;
-	private String city;
-	private String telephon;
-	private String mobile;
-	private String eMail;
-	private String licenceNumber;
-	private Blob picture;
 
-	public Key getKey() {
-		return key;
+	public Long getId() {
+		return id;
 	}
 
-	public void setKey(Key key) {
-		this.key = key;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -55,94 +39,6 @@ public class Player {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public Date getBirthDay() {
-		return birthDay;
-	}
-
-	public void setBirthDay(Date birthDay) {
-		this.birthDay = birthDay;
-	}
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getTelephon() {
-		return telephon;
-	}
-
-	public void setTelephon(String telephon) {
-		this.telephon = telephon;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String geteMail() {
-		return eMail;
-	}
-
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
-
-	public Blob getPicture() {
-		return picture;
-	}
-
-	public void setPicture(Blob picture) {
-		this.picture = picture;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getLicenceNumber() {
-		return licenceNumber;
-	}
-
-	public void setLicenceNumber(String licenceNumber) {
-		this.licenceNumber = licenceNumber;
-	}
-
-	public String getClub() {
-		return club;
-	}
-
-	public void setClub(String club) {
-		this.club = club;
 	}
 
 }

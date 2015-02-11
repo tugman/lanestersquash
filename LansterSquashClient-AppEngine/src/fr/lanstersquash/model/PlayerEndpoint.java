@@ -15,8 +15,6 @@ import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
-import fr.lanstersquash.EMF;
-
 @Api(name = "playerendpoint", namespace = @ApiNamespace(ownerDomain = "lanstersquash.fr", ownerName = "lanstersquash.fr", packagePath = "model"))
 public class PlayerEndpoint {
 
@@ -153,7 +151,7 @@ public class PlayerEndpoint {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Player item = mgr.find(Player.class, player.getKey());
+			Player item = mgr.find(Player.class, player.getId());
 			if (item == null) {
 				contains = false;
 			}
